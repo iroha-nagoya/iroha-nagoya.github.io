@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>いろは日本語の会</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 32px;
+    }
+
+    h2 {
+      color: #f57c00;
+      margin-bottom: 20px;
+    }
+
+    /* ===== 写真グリッド ===== */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .photo-grid img {
+        height: 160px;
+      }
+    }
+
+    footer {
+      background-color: #f57c00;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+/* 写真ページ：文字は白 */
+body {
+  background-color: #000; /* 写真が映える */
+}
+
+h1, h2 {
+  color: white;
+}
+
+.lang-switch a {
+  color: white !important;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.lang-switch a:hover {
+  text-decoration: underline;
+}
+
+/* ===== 写真ページ：色の指定（追加） ===== */
+
+body {
+  background-color: #ffffff;   /* 背景：白 */
+  color: #f57c00;              /* 文字：オレンジ */
+}
+
+h1, h2 {
+  color: #f57c00;
+}
+
+.lang-switch a {
+  color: #f57c00 !important;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.lang-switch a:hover {
+  text-decoration: underline;
+}
+/* ===== 写真ページ：ヘッダーをオレンジ帯・白文字に ===== */
+header {
+  background-color: #f57c00;   /* オレンジ帯 */
+  padding: 10px 20px;
+}
+
+header h1 {
+  color: white;
+}
+
+.lang-switch a {
+  color: white !important;     /* 多言語ボタンも白 */
+}
+
+  </style>
+</head>
+
+<body>
+<div id="header"></div>
+
+<div class="container">
+
+  <!-- 教室の様子 -->
+  <h2 class="lang"
+    data-ja="教室の様子"
+    data-en="Classroom Activities"
+    data-zh="课堂活动">
+  教室の様子
+</h2>
+
+  <div class="photo-grid">
+    <img src="images/photo1.jpg" alt="教室のようす">
+    <img src="images/photo2.jpg" alt="会話練習のようす">
+    <img src="images/photo3.jpg" alt="学習の様子">
+    <img src="images/photo4.jpg" alt="学習の様子">
+  </div>
+
+  <!-- イベント（お花見） -->
+  <h2 class="lang"
+    data-ja="イベント（お花見）"
+    data-en="Events (Cherry Blossom Viewing)"
+    data-zh="活动（赏樱）">
+  イベント（お花見）
+</h2>
+
+  <div class="photo-grid">
+    <img src="images/event1.jpg" alt="お花見の様子">
+    <img src="images/event2.jpg" alt="集合写真">
+    <img src="images/event3.jpg" alt="交流の様子">
+  </div>
+
+</div>
+
+<footer>
+  <p
+    data-ja="© 1995 いろは日本語の会"
+    data-en="© 1995 Iroha Japanese Association"
+    data-zh="© 1995 伊吕波日语会">
+    © 1995 いろは日本語の会
+  </p>
+</footer>
+
+<script src="lang.js"></script>
+<script>
+fetch("header.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
+
+    attachLangEvents(); // ← 必須
+    const lang = localStorage.getItem("lang") || "ja";
+    setLang(lang);
+  });
+</script>
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+</script>
+</body>
+</html>

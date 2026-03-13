@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>いろは日本語の会</title>
+  <style>
+html, body {
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ===== フッター ===== */
+footer {
+  background-color: #f57c00;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
+
+footer p {
+  margin: 0;
+}
+
+
+/* ===== ヒーロー画像スライド ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+}
+
+.slides {
+  position: absolute;
+  inset: 0;
+}
+
+.slides img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: slideShow 15s infinite;
+}
+
+.slides img:nth-child(1) { animation-delay: 0s; }
+.slides img:nth-child(2) { animation-delay: 5s; }
+.slides img:nth-child(3) { animation-delay: 10s; }
+
+@keyframes slideShow {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  30%  { opacity: 1; }
+  40%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ===== ヒーロー文字 ===== */
+.hero-text {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-text h2 {
+  font-size: 32px;
+  background-color: rgba(0,0,0,0.45);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+}
+
+
+/* ===== スマホ用 ===== */
+@media (max-width: 768px) {
+
+
+  /* ヒーロー画像（写真） */
+  .hero {
+    height: 200px;        /* ← 写真を低くして広く見せる */
+  }
+
+  .hero-text h2 {
+    font-size: 20px;
+    padding: 8px 16px;
+  }
+}
+
+/* コンテンツ全体の左右余白 */
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 32px;   /* PCでもスマホでも余白を確保 */
+}
+
+/* スマホ用にさらに余白調整 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+
+.container p {
+  line-height: 1.8;
+  margin-bottom: 1em;
+}
+/* ===== レッスンセクション ===== */
+
+#lesson {
+  background-image: url('images/lesson/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 60px 0;
+}
+
+.lesson-hero {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.lesson-hero h2 {
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 28px;
+}
+
+.lesson-info {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+/* 初期状態は非表示 */
+#sp-all {
+  display: none;
+}
+
+/* スマホだけ表示 */
+@media (max-width: 768px) {
+
+  #sp-all {
+    display: block;
+  }
+
+  /* 逆にPC用レイアウトを非表示にするなら
+     ここで特定クラスを消せます */
+}
+#lesson h3 {
+  color: #f57c00;
+  border-bottom: 2px solid #f57c00;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+#lesson ul {
+  padding-left: 20px;
+  margin-left: 0;
+}
+
+#lesson li {
+  text-align: left;
+}
+/* ===== アクセスセクション ===== */
+
+#access {
+  background-color: #fffaf5;
+  padding: 60px 0;
+}
+
+.access-hero {
+  padding: 40px 20px 60px;
+  background-color: #ffffff;
+}
+
+.hero-photos-layered {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto 24px;
+}
+
+.hero-photos-layered .photo-main {
+  width: 100%;
+  max-width: 620px;
+  border-radius: 16px;
+  display: block;
+}
+
+.hero-photos-layered .photo-sub {
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  width: 45%;
+  max-width: 380px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  background: #fff;
+}
+
+.access-info {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 30px;
+  line-height: 1.8;
+}
+
+#access h3 {
+  color: #f57c00;
+  border-bottom: 2px solid #f57c00;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+#access iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* スマホ */
+@media (max-width: 768px) {
+  .hero-photos-layered .photo-sub {
+    position: static;
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+#contact h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f57c00;   /* 少し落ち着いたオレンジ */
+  font-size: 26px;  /* 少し小さく */
+}
+.contact-btn {
+  display: inline-block;
+  background: #f57c00;   /* オレンジ */
+  color: white;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+#contact .button-wrap {
+  display: flex;
+  justify-content: center;
+}
+.section-title {
+  text-align: center;
+  color: #f57c00;
+  font-size: 26px;
+  margin-bottom: 30px;
+}
+</style>
+
+</head>
+<body>
+<div id="header"></div>
+
+<section class="hero">
+  <div class="slides">
+    <img src="images/slide1.jpg" alt="教室の様子1">
+    <img src="images/slide2.jpg" alt="教室の様子2">
+    <img src="images/slide3.jpg" alt="お花見の様子">
+  </div>
+
+  <div class="hero-text">
+    <h2
+  data-ja='はじめの一歩を"いろは"から'
+  data-en="Start your first step with Iroha"
+  data-zh="从“Iroha”开始迈出第一步">
+  はじめの一歩を"いろは"から
+</h2>
+
+  </div>
+</section>
+
+<div class="container">
+
+  <p
+    data-ja="ようこそ！"
+    data-en="Welcome!"
+    data-zh="欢迎您！">
+    ようこそ！
+  </p>
+
+  <p
+    data-ja="「いろは日本語の会」は、日本語を学びたい方と、日本語を教えたいボランティアが集まる会です。"
+    data-en="Iroha Japanese Association is a community where learners of Japanese and volunteer teachers meet and learn together."
+    data-zh="“伊吕波日语会“ 是一个让想学习日语的人与想教日语的志愿者相聚、共同学习的团体。">
+    「いろは日本語の会」は、日本語を学びたい方と、日本語を教えたいボランティアが集まる会です。
+  </p>
+
+  <p
+    data-ja="日常生活に役立つ日本語や日本の習慣を学びながら、安心して日本での毎日を送れるようお手伝いしています。"
+    data-en="We support you in learning practical Japanese and Japanese customs so that you can live comfortably and confidently in Japan."
+    data-zh="我们通过学习实用日语和日本的生活习惯，帮助大家在日本安心、自信地生活。">
+    日常生活に役立つ日本語や日本の習慣を学びながら、安心して日本での毎日を送れるようお手伝いしています。
+  </p>
+
+</div>
+
+<section id="sp-all">
+
+  <!-- レッスン -->
+
+<section id="lesson">
+<div class="lesson-hero">
+    <h2
+  data-ja="レッスンのご案内"
+  data-en="Lesson Information"
+  data-zh="课程介绍">
+  レッスンのご案内
+  </h2>
+
+<div class="container">
+
+ <div class="lesson-info">
+      <h3
+  data-ja="初級の方のためのクラス"
+  data-en="Beginner Class"
+  data-zh="初级课程">
+  初級の方のためのクラス
+  </h3>
+
+      <p
+  data-ja="いろは日本語の会では、日本語を初めて学ぶ方・少し勉強したことがある方を対象に、やさしく楽しく学べるクラスを開いています。"
+  data-en="Iroha Japanese Association offers friendly and enjoyable classes for beginners and those with basic experience in Japanese."
+  data-zh="伊吕波日语会为日语初学者及有基础者提供轻松愉快的课程。">
+  いろは日本語の会では、日本語を初めて学ぶ方・少し勉強したことがある方を対象に、やさしく楽しく学べるクラスを開いています。
+  </p>
+
+      <ul>
+       <li
+  data-ja="クラス数：7クラス"
+  data-en="Number of classes: 7"
+  data-zh="班级数量：7个">
+  クラス数：7クラス
+  </li>
+
+  <li
+  data-ja="開催日：毎週木曜日"
+  data-en="Day: Every Thursday"
+  data-zh="上课日：每周四">
+  開催日：毎週木曜日
+  </li>
+
+  <li
+  data-ja="時間：10:15〜11:45（90分）"
+  data-en="Time: 10:15–11:45 (90 minutes)"
+  data-zh="时间：10:15–11:45（90分钟）">
+  時間：10:15〜11:45（90分）
+  </li>
+
+  <li
+  data-ja="漢字クラス：9:50〜10:10（20分）"
+  data-en="Kanji class: 9:50–10:10 (20 minutes)"
+  data-zh="汉字课：9:50–10:10（20分钟）">
+  漢字クラス：9:50〜10:10（20分）
+  </li>
+
+  <li
+  data-ja="場所：ナディアパーク6F 名古屋市市民活動推進センター"
+  data-en="Location: Nadia Park 6F, Nagoya City Civic Activity Promotion Center"
+  data-zh="地点：Nadia Park 6楼 名古屋市市民活动推进中心">
+  場所：ナディアパーク6F 名古屋市市民活動推進センター
+  </li>
+
+  <li
+  data-ja="テキスト：オリジナル教材（「みんなの日本語Ⅰ・Ⅱ」より）"
+  data-en='Textbook: Original materials (based on "Minna no Nihongo I & II")'
+  data-zh='教材：原创教材（参考《大家的日本语Ⅰ・Ⅱ》）'>
+  テキスト：オリジナル教材（「みんなの日本語Ⅰ・Ⅱ」より）
+  </li>
+
+      </ul>
+ </div>
+ <div class="lesson-info">
+  <h3
+  data-ja="参加について"
+  data-en="How to Join"
+  data-zh="参加方式">
+  参加について
+  </h3>
+
+      <ul>
+  <li
+  data-ja="いつでも入会できます。"
+  data-en="You can join at any time."
+  data-zh="随时可以加入。">
+  いつでも入会できます。
+  </li>
+
+  <li
+  data-ja="1回200円（タームごとにお支払い）"
+  data-en="Fee: 200 yen per class (paid by term)"
+  data-zh="费用：每次200日元（按学期支付）">
+  1回200円（タームごとにお支払い）
+  </li>
+
+  <li
+  data-ja="春休み・夏休み・冬休みがあります。"
+  data-en="There are spring, summer, and winter breaks."
+  data-zh="有春假、暑假和寒假。">
+  春休み・夏休み・冬休みがあります。
+  </li>
+
+  <li
+  data-ja="タームスケジュール：1〜3月、4〜7月、9〜12月"
+  data-en="Term schedule: January–March, April–July, September–December"
+  data-zh="学期安排：1–3月，4–7月，9–12月">
+  タームスケジュール：1〜3月、4〜7月、9〜12月
+  </li>
+
+  </ul>
+ </div>
+
+ <div class="lesson-info">
+  <h3
+  data-ja="こんな方におすすめ"
+  data-en="Recommended for"
+  data-zh="推荐对象">
+  こんな方におすすめ
+  </h3>
+
+  <ul>
+  <li
+    data-ja="日本語を基礎から学びたい方"
+    data-en="People who want to learn Japanese from the basics"
+    data-zh="想从基础开始学习日语的人">
+    日本語を基礎から学びたい方
+  </li>
+
+  <li
+    data-ja="日本語で会話ができるようになりたい方"
+    data-en="People who want to communicate in Japanese"
+    data-zh="希望能够用日语交流的人">
+    日本語で会話ができるようになりたい方
+  </li>
+
+  <li
+    data-ja="楽しく日本語を勉強したい方"
+    data-en="People who want to enjoy learning Japanese"
+    data-zh="想快乐地学习日语的人">
+    楽しく日本語を勉強したい方
+  </li>
+  </ul>
+ </div>
+</div>
+</div>
+  </section>
+
+  <!-- アクセス -->
+<section id="access">
+ <h2 class="section-title lang"
+  data-ja="アクセス"
+  data-en="Access"
+  data-zh="交通方式">
+  アクセス
+</h2>
+  <div class="access-hero">
+    <div class="hero-photos-layered">
+      <img src="images/nadya1.jpg" alt="" class="photo-main">
+      <img src="images/nadya2.jpg" alt="" class="photo-sub">
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="access-info">
+      <!-- 会場ブロック -->
+       <h3
+  data-ja="会場"
+  data-en="Venue"
+  data-zh="会场">
+  会場
+</h3>
+
+      <p
+  data-ja="ナディアパーク6階 名古屋市市民活動推進センター（〒460-0008 名古屋市中区栄3丁目18-1）"
+  data-en="Nagoya City Civic Activity Promotion Center, 6th floor of Nadia Park (3-18-1 Sakae, Naka-ku, Nagoya)"
+  data-zh="名古屋市市民活动推进中心（Nadia Park 6楼，名古屋市中区荣3-18-1）">
+  ナディアパーク6階 名古屋市市民活動推進センター<br>
+  （〒460-0008 名古屋市中区栄3丁目18-1）
+</p>
+
+      <p
+  data-ja="名古屋市中心部・栄のナディアパーク内にあります。地下鉄「矢場町駅」6番出口から徒歩約5分、「栄駅」から徒歩約10分です。"
+  data-en="Located in Nadia Park in Sakae, central Nagoya. About a 5-minute walk from Yabacho Station Exit 6, and about 10 minutes from Sakae Station."
+  data-zh="位于名古屋市中心荣地区的Nadia Park内。从地铁“矢场町站”6号出口步行约5分钟，从“荣站”步行约10分钟。">
+  名古屋市中心部・栄のナディアパーク内にあります。<br>
+  地下鉄「矢場町駅」6番出口から徒歩約5分、<br>
+  「栄駅」から徒歩約10分です。
+</p>
+
+    </div>
+
+    <iframe
+      src="https://www.google.com/maps?q=ナディアパーク&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+ <div class="access-info">
+      <!-- 開講日時ブロック -->
+       <h3
+  data-ja="開講日時"
+  data-en="Class Schedule"
+  data-zh="上课时间">
+  開講日時
+  </h3>
+
+      <p
+  data-ja="毎週木曜日 10:15〜11:45（※漢字クラス 9:50〜10:10）"
+  data-en="Every Thursday, 10:15–11:45 (Kanji class: 9:50–10:10)"
+  data-zh="每周四 10:15–11:45（汉字课：9:50–10:10）">
+  毎週木曜日　10:15〜11:45　（※漢字クラス 9:50〜10:10）
+  </p>
+
+  <p
+  data-ja="1〜3月、4〜7月、9〜12月"
+  data-en="January–March, April–July, September–December"
+  data-zh="1–3月，4–7月，9–12月">
+  1〜3月, 4〜7月, 9〜12月
+  </p>
+ </div>
+ </div>
+
+</section>
+
+  <!-- お問い合わせ -->
+  <section id="contact">
+    <div class="container">
+    <h1 class="lang"
+  data-ja="お問い合わせ"
+  data-en="Contact Us"
+  data-zh="联系我们">
+  お問い合わせ
+ </h1>
+
+ <p class="lang"
+  data-ja="レッスンや活動内容についてのご質問は、下の「お問い合わせフォーム」から送信してください。ご入力いただいた内容は、スタッフが確認し、メールにてご連絡いたします。"
+  data-en="If you have any questions about our lessons or activities, please use the contact form below. Our staff will review your message and contact you by email."
+  data-zh="如果您对课程或活动内容有任何疑问，请通过下面的联系表单发送。工作人员确认后会通过电子邮件与您联系。">
+  レッスンや活動内容についてのご質問は、下の「お問い合わせフォーム」から送信してください。<br>
+  ご入力いただいた内容は、スタッフが確認し、メールにてご連絡いたします。
+ </p>
+
+ <div class="button-wrap">
+   <a id="contactBtn" class="contact-btn"
+   data-ja="お問い合わせフォームを開く"
+   data-en="Open Contact Form"
+   data-zh="打开咨询表单"
+   data-urlJA="https://docs.google.com/forms/d/e/1FAIpQLScDxFXeTerUpsMJ8LOn1NtE_nb_sJBv48EjlSa2bQPo4sLjpg/viewform?usp=sharing&ouid=104705695837082457581"
+   data-urlEN="https://docs.google.com/forms/d/e/1FAIpQLSfecnvmNYAzSysv06tJ8Bs_emlNQ2g7Jc2xZolf9ijw6HPCjg/viewform?usp=sharing&ouid=104705695837082457581"
+   data-urlZH="https://docs.google.com/forms/d/e/1FAIpQLScSLKwoUDaxIdNWXg8Ojv937o1a3EY88zA0Gi82SHZoPzOk1w/viewform?usp=sharing&ouid=104705695837082457581"
+   
+   target="_blank" rel="noopener">
+   お問い合わせフォームを開く
+   </a>
+ </div>
+</div>
+  </section>
+</section>
+
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+</script>
+
+<footer>
+  <p
+    data-ja="© 1995 いろは日本語の会"
+    data-en="© 1995 Iroha Japanese Language Group"
+    data-zh="© 1995 伊吕波日语会">
+    © 1995 いろは日本語の会
+  </p>
+</footer>
+
+
+<!-- Google翻訳（見えない部分） -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      { pageLanguage: 'ja', autoDisplay: false },
+      'google_translate_element'
+    );
+  }
+
+  </script>
+
+<script src="lang.js"></script>
+
+<script>
+fetch("header.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
+
+    // ✅ header読み込み後にイベントを付ける
+    attachLangEvents();
+
+    // ✅ 保存された言語を再適用
+    const lang = localStorage.getItem("lang") || "ja";
+    setLang(lang);
+  });
+</script>
+
+</body>
+</html>

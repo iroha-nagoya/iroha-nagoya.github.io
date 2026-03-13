@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>カレンダー｜いろは日本語の会（2026）</title>
+  <style>
+    /* ===== 色の設定（ここを変えれば色分けを調整できます） ===== */
+    :root{
+      --term1:#ffe6c7;   /* 1ターム：1/8〜3/19 */
+      --term2:#e6f4e8;   /* 2ターム：4/9〜7/16 */
+      --term3:#f3e6f7;   /* 3ターム：9/3〜12/17 */
+      --base:#fffaf5;
+      --text:#333;
+      --accent:#ff8f3f;
+    }
+
+    body{
+      margin:0; font-family:"Hiragino Sans","Noto Sans JP",sans-serif;
+      background:var(--base); color:var(--text);
+    }
+    
+    h1{margin:18px 0; text-align:center; color:#ff7a20}
+
+    .wrap{max-width:1100px; margin:0 auto 40px; padding:0 16px}
+    .legend{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:16px; font-size:14px}
+    .legend span{display:inline-flex; align-items:center; gap:6px}
+    .box{width:16px; height:16px; border-radius:4px}
+
+    .months{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px}
+    .month{background:#fff; border-radius:16px; padding:14px}
+    .month h3{text-align:center; margin:6px 0 10px}
+
+    table{width:100%; border-collapse:separate; border-spacing:0}
+    th{font-size:12px; color:#666; padding:6px 0}
+    td{height:38px; text-align:center; vertical-align:middle}
+    td span{display:inline-block; min-width:28px; line-height:28px; border-radius:14px}
+
+    /* ターム色 */
+    .t1 span{background:var(--term1)}
+    .t2 span{background:var(--term2)}
+    .t3 span{background:var(--term3)}
+
+    .note{text-align:center; font-size:13px; color:#666; margin-top:20px}
+    .lang-switch{
+      font-size:13px;
+      text-align:right;
+      margin-bottom:6px;
+    }
+    .lang-switch a{
+      color:white;
+      text-decoration:none;
+      margin:0 4px;
+    }
+    .lang-switch a:hover{
+      text-decoration:underline;
+    }
+   footer {
+  background-color: #f57c00;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
+
+footer p {
+  margin: 0;
+}
+/* PCでは改行しない */
+.sp-br {
+  display: none;
+}
+
+/* スマホ（768px以下）では改行する */
+@media (max-width: 768px) {
+  .sp-br {
+    display: inline;
+  }
+}
+
+  </style>
+</head>
+<body>
+<div id="header"></div>
+
+<div class="wrap">
+  <h1
+  data-ja="2026年<span class='sp-br'><br></span>クラス日カレンダー"
+  data-en="2026 Class Schedule Calendar"
+  data-zh="2026年 课程日历"
+>
+  2026年 クラス日カレンダー
+</h1>
+
+  <div class="legend">
+  <span><i class="box" style="background:var(--term1)"></i><span id="term1"></span></span>
+  <span><i class="box" style="background:var(--term2)"></i><span id="term2"></span></span>
+  <span><i class="box" style="background:var(--term3)"></i><span id="term3"></span></span>
+</div>
+
+
+  <div class="months" id="months"></div>
+
+  <p class="note"
+  data-ja="※ 色が付いている日は「授業のある木曜日」です。休みの日は変更になることがあります。"
+  data-en="Colored dates indicate Thursdays with classes. Class days may change."
+  data-zh="有颜色的日期表示有课程。休息日可能会有所变更。"
+>
+  ※ 色が付いている日は「授業のある木曜日」です。休みの日は変更になることがあります。
+</p>
+
+</div>
+<footer>
+  <p
+    data-ja="© 1995 いろは日本語の会"
+    data-en="© 1995 Iroha Japanese Association"
+    data-zh="© 1995 伊吕波日语会">
+    © 1995 いろは日本語の会
+  </p>
+</footer>
+
+
+<script src="lang.js"></script>
+
+ <script>
+const year = 2026;
+
+function getCurrentLang() {
+  return localStorage.getItem("lang") || "ja";
+}
+
+const terms = [
+  {start:new Date(year,0,8),  end:new Date(year,2,19), cls:'t1'},
+  {start:new Date(year,3,9),  end:new Date(year,6,16), cls:'t2'},
+  {start:new Date(year,8,3),  end:new Date(year,11,17), cls:'t3'}
+];
+
+const holidays = [
+  new Date(year, 4, 7)
+];
+
+function termClass(d){
+  if(d.getDay() !== 4) return '';
+  for(const h of holidays){
+    if(d.getTime() === h.getTime()) return '';
+  }
+  for(const t of terms){
+    if(d >= t.start && d <= t.end) return t.cls;
+  }
+  return '';
+}
+
+function renderCalendar() {
+  const lang = getCurrentLang();
+  const wrap = document.getElementById("months");
+  wrap.innerHTML = "";
+
+  // ターム表示
+  document.getElementById("term1").textContent = calendarText[lang].terms[0];
+  document.getElementById("term2").textContent = calendarText[lang].terms[1];
+  document.getElementById("term3").textContent = calendarText[lang].terms[2];
+
+  for(let m=0; m<12; m++){
+    const first = new Date(year,m,1);
+    const last  = new Date(year,m+1,0);
+
+    const box = document.createElement("div");
+    box.className = "month";
+    box.innerHTML = `<h3>${year} ${calendarText[lang].months[m]}</h3>`;
+
+    const table = document.createElement("table");
+    const wd = calendarText[lang].weekdays;
+
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>${wd[0]}</th><th>${wd[1]}</th><th>${wd[2]}</th>
+          <th>${wd[3]}</th><th>${wd[4]}</th><th>${wd[5]}</th><th>${wd[6]}</th>
+        </tr>
+      </thead>
+    `;
+
+    const tbody = document.createElement("tbody");
+    let tr = document.createElement("tr");
+
+    for(let i=0;i<first.getDay();i++){
+      tr.appendChild(document.createElement("td"));
+    }
+
+    for(let d=1; d<=last.getDate(); d++){
+      if(tr.children.length === 7){
+        tbody.appendChild(tr);
+        tr = document.createElement("tr");
+      }
+      const date = new Date(year,m,d);
+      const td = document.createElement("td");
+      const span = document.createElement("span");
+      span.textContent = d;
+
+      const cls = termClass(date);
+      if(cls) td.classList.add(cls);
+
+      td.appendChild(span);
+      tr.appendChild(td);
+    }
+
+    while(tr.children.length < 7){
+      tr.appendChild(document.createElement("td"));
+    }
+
+    tbody.appendChild(tr);
+    table.appendChild(tbody);
+    box.appendChild(table);
+    wrap.appendChild(box);
+  }
+}
+
+// 初回表示
+renderCalendar();
+
+// 言語切替時にも再描画
+const originalSetLang = window.setLang;
+window.setLang = function(lang){
+  originalSetLang(lang);
+  renderCalendar();
+};
+</script>
+
+<script src="lang.js"></script>
+
+<script>
+fetch("header.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
+
+    attachLangEvents(); // ← 必須
+    const lang = localStorage.getItem("lang") || "ja";
+    setLang(lang);
+  });
+</script>
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+</script>
+</body>
+</html>

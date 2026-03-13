@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!-- saved from url=(0169)file:///C:/Users/inuzu/OneDrive/%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97/!DOCTYPE%20html%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%20index.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title
+  data-ja="お問い合わせ | いろは日本語の会"
+  data-en="Contact | Iroha Japanese Association"
+  data-zh="联系我们 | 伊吕波日语会">
+  お問い合わせ | いろは日本語の会
+</title>
+
+  <style>
+   html, body {
+    height: 100%;
+   }
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff7ef;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+   }
+  main {
+  flex: 1;
+  }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff7a20;
+    }
+    p {
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .button-wrap {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .contact-btn {
+      display: inline-block;
+      background: #ff8f3f;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 18px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    cursor: pointer;
+    pointer-events: auto;
+    }
+    .contact-btn:hover {
+      background: #ff7a20;
+    }
+footer {
+  background-color: #f57c00;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  margin-top: 40px;
+}
+
+  </style>
+</head>
+<body>
+<div id="header"></div>
+
+ <main>
+<div class="container">
+    <h1 class="lang"
+  data-ja="お問い合わせ"
+  data-en="Contact Us"
+  data-zh="联系我们">
+  お問い合わせ
+ </h1>
+
+ <p class="lang"
+  data-ja="レッスンや活動内容についてのご質問は、下の「お問い合わせフォーム」から送信してください。ご入力いただいた内容は、スタッフが確認し、メールにてご連絡いたします。"
+  data-en="If you have any questions about our lessons or activities, please use the contact form below. Our staff will review your message and contact you by email."
+  data-zh="如果您对课程或活动内容有任何疑问，请通过下面的联系表单发送。工作人员确认后会通过电子邮件与您联系。">
+  レッスンや活動内容についてのご質問は、下の「お問い合わせフォーム」から送信してください。<br>
+  ご入力いただいた内容は、スタッフが確認し、メールにてご連絡いたします。
+ </p>
+
+ <div class="button-wrap">
+   <a id="contactBtn" class="contact-btn"
+   data-ja="お問い合わせフォームを開く"
+   data-en="Open Contact Form"
+   data-zh="打开咨询表单"
+   data-urlJA="https://docs.google.com/forms/d/e/1FAIpQLScDxFXeTerUpsMJ8LOn1NtE_nb_sJBv48EjlSa2bQPo4sLjpg/viewform?usp=sharing&ouid=104705695837082457581"
+   data-urlEN="https://docs.google.com/forms/d/e/1FAIpQLSfecnvmNYAzSysv06tJ8Bs_emlNQ2g7Jc2xZolf9ijw6HPCjg/viewform?usp=sharing&ouid=104705695837082457581"
+   data-urlZH="https://docs.google.com/forms/d/e/1FAIpQLScSLKwoUDaxIdNWXg8Ojv937o1a3EY88zA0Gi82SHZoPzOk1w/viewform?usp=sharing&ouid=104705695837082457581"
+   
+   target="_blank" rel="noopener">
+   お問い合わせフォームを開く
+   </a>
+ </div>
+</div>
+</main>
+
+<script>
+  fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    });
+</script>
+
+<footer>
+  <p
+    data-ja="© 1995 いろは日本語の会"
+    data-en="© 1995 Iroha Japanese Association"
+    data-zh="© 1995 伊吕波日语会">
+    © 1995 いろは日本語の会
+  </p>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("contactBtn");
+  const lang = document.documentElement.lang || "ja";
+
+  const textMap = {
+    ja: btn.dataset.ja,
+    en: btn.dataset.en,
+    zh: btn.dataset.zh
+  };
+
+  const urlMap = {
+    ja: btn.dataset.urlja,
+    en: btn.dataset.urlen,
+    zh: btn.dataset.urlzh
+  };
+
+  btn.textContent = textMap[lang] || textMap.ja;
+  btn.href = urlMap[lang] || urlMap.ja;
+});
+</script>
+
+<script src="lang.js"></script>
+
+<script>
+fetch("header.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
+
+    attachLangEvents(); // ← 必須
+    const lang = localStorage.getItem("lang") || "ja";
+    setLang(lang);
+  });
+</script>
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+</script>
+</body></html>

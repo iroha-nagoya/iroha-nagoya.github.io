@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ボランティア募集｜いろは日本語の会</title>
+
+<style>
+/* ===== 共通 ===== */
+body {
+  margin: 0;
+  font-family: "Hiragino Sans","Noto Sans JP",sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+/* ===== メイン ===== */
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h2 {
+  color: #f57c00;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section {
+  margin-bottom: 30px;
+  line-height: 1.8;
+}
+
+/* 募集停止メッセージ */
+.notice {
+  background-color: #fff3e0;
+  border: 2px solid #f57c00;
+  color: #000;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  display: none; /* ← 初期状態は非表示 */
+}
+
+/* ===== フッター ===== */
+footer {
+  background-color: #f57c00;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  margin-top: 40px;
+}
+
+/* ===== スマホ ===== */
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+  }
+
+}
+</style>
+</head>
+
+<body>
+<div id="header"></div>
+
+<main>
+  <h2
+  data-ja="ボランティア募集"
+  data-en="Volunteer Recruitment"
+  data-zh="志愿者招募">
+  ボランティア募集
+</h2>
+
+
+  <!-- ★ 募集停止メッセージ（出したり消したり） -->
+  <div class="notice" id="notice">
+  <strong
+    data-ja="申し訳ありませんが、ただ今ボランティアの募集はしておりません。"
+    data-en="We are sorry, but we are not accepting volunteer applications at the moment."
+    data-zh="很抱歉，目前暂不招募志愿者。">
+    申し訳ありませんが、ただ今ボランティアの募集はしておりません。
+  </strong>
+</div>
+
+
+  <div class="section">
+    <p
+  data-ja="ボランティアスタッフを募集しています。日本語に関心のある方、人の役に立ちたいと思っている方、ぜひ、見学にお越しください。"
+  data-en="We are looking for volunteer staff. If you are interested in Japanese and want to help others, please feel free to visit us."
+  data-zh="我们正在招募志愿者。如果您对教日语感兴趣，并希望帮助他人，欢迎前来参观。">
+  ボランティアスタッフを募集しています。<br>
+  日本語に関心のある方、人の役に立ちたいと思っている方、ぜひ、見学にお越しください。
+</p>
+
+  </div>
+
+  <div class="section">
+    <p
+  data-ja="経験・資格は問いませんが、１年以上継続して参加できる方を希望しています。"
+  data-en="No experience or qualifications are required, but we hope you can participate for at least one year."
+  data-zh="不要求经验或资格，但希望可以持续参加一年以上。">
+  経験・資格は問いませんが、１年以上継続して参加できる方を希望しています。
+</p>
+
+  </div>
+
+  <div class="section">
+    <p
+  data-ja="ボランティアスタッフは、月に2回程度レッスン終了後に、ミーティング・勉強会を行っています。レッスンの進め方、日本語についての疑問など、意見交換をしています。"
+  data-en="Volunteer staff hold meetings and study sessions about twice a month after lessons to exchange ideas about teaching methods and Japanese language questions."
+  data-zh="我们通常一个月两次在课程结束后进行会议和学习会，交流教学方法和日语相关问题。">
+  ボランティアスタッフは、月に2回程度レッスン終了後に、ミーティング・勉強会を行っています。<br>
+  レッスンの進め方、日本語についての疑問など、意見交換をしています。
+</p>
+
+  <div class="section">
+  <p
+    data-ja="見学を希望される方は、事前に下記アドレスへご連絡ください。"
+    data-en="If you would like to observe a class, please contact us in advance at the email address below."
+    data-zh="如希望参观课程，请提前通过以下邮箱联系我们。">
+    見学を希望される方は、事前に下記アドレスへご連絡ください。
+  </p>
+
+  <p>
+    【E-mail】
+    <a href="mailto:irohanihongonokai@gmail.com">
+      irohanihongonokai@gmail.com
+    </a>
+  </p>
+</div>
+
+
+</main>
+
+<footer>
+  <p
+    data-ja="© 1995 いろは日本語の会"
+    data-en="© 1995 Iroha Japanese Association"
+    data-zh="© 1995 伊吕波日语会">
+    © 1995 いろは日本語の会
+  </p>
+</footer>
+
+<script src="lang.js"></script>
+
+<script>
+fetch("header.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
+
+    attachLangEvents(); // ← 必須
+    const lang = localStorage.getItem("lang") || "ja";
+    setLang(lang);
+  });
+</script>
+
+<script>
+/* ★ 募集停止メッセージの ON / OFF */
+const recruiting = false; // 募集中 → true / 募集停止 → false
+
+if (!recruiting) {
+  document.getElementById("notice").style.display = "block";
+}
+</script>
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+</script>
+</body>
+</html>

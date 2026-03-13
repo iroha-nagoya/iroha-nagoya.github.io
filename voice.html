@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学習者さんの声｜いろは日本語の会</title>
+
+<style>
+/* ===== 全体 ===== */
+body {
+  margin: 0;
+  font-family: "Hiragino Sans","Noto Sans JP",sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+/* ===== メイン ===== */
+main {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h2 {
+  color: #f57c00;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ===== 学習者さんの声：グリッド ===== */
+.voice-grid {
+  display: grid;
+  grid-template-columns: 1fr;   /* ← スマホ：縦並び */
+  gap: 20px;
+}
+
+/* ===== PC画面 ===== */
+@media (min-width: 768px) {
+  .voice-grid {
+    grid-template-columns: repeat(4, 1fr); /* ← PC：横4枚 */
+  }
+}
+
+/* ===== カード ===== */
+.voice-card {
+  border: 2px solid #f57c00;
+  border-radius: 16px;
+  padding: 16px;
+  background-color: #fff;
+  color: #000;
+  box-sizing: border-box;
+}
+
+/* 上部（国旗＋名前） */
+.voice-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.voice-header img {
+  width: 28px;
+  height: auto;
+  border-radius: 4px;
+}
+
+.voice-header span {
+  font-weight: bold;
+}
+
+/* ===== フッター ===== */
+footer {
+  background-color: #f57c00;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  margin-top: 40px;
+}
+
+/* ===== スマホ ===== */
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+  }
+
+  
+.voice-list {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .voice-list {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+}
+</style>
+</head>
+
+<body>
+<div id="header"></div>
+
+<main>
+  <h2
+  data-ja="学習者さんの声"
+  data-en="Learners' Voices"
+  data-zh="学习者的声音">
+  学習者さんの声
+</h2>
+
+
+ <div class="voice-grid">
+
+  <div class="voice-card">
+    <div class="voice-header">
+      <img src="images/flags/kr.png" alt="韓国">
+      <span data-ja="Aさん（韓国）" data-en="Participant A (Korea)" data-zh="A 学员（韩国）">
+        Aさん（韓国）
+      </span>
+    </div>
+    <p data-ja="先生が優しくて授業の雰囲気がとても良いです。"
+       data-en="The teachers are kind and the class atmosphere is very friendly."
+       data-zh="老师很亲切，课堂氛围非常好。">
+      先生が優しくて授業の雰囲気がとても良いです。
+    </p>
+  </div>
+
+  <div class="voice-card">
+    <div class="voice-header">
+      <img src="images/flags/us.png" alt="アメリカ">
+      <span data-ja="Bさん（アメリカ）" data-en="Participant B (USA)" data-zh="B 学员（美国）">
+        Bさん（アメリカ）
+      </span>
+    </div>
+    <p data-ja="次のレッスンに進む前に、復習をしてくれるので、わかりやすいです。"
+       data-en="They review the lessons before moving on, which makes it easy to understand."
+       data-zh="在进入下一课之前会进行复习，所以很容易理解。">
+      次のレッスンに進む前に、復習をしてくれるので、わかりやすいです。
+    </p>
+  </div>
+
+  <div class="voice-card">
+    <div class="voice-header">
+      <img src="images/flags/cn.png" alt="中国">
+      <span data-ja="Cさん（中国）" data-en="Participant C (China)" data-zh="C 学员（中国）">
+        Cさん（中国）
+      </span>
+    </div>
+    <p data-ja="先生の説明がわかりやすく、楽しく日本語を勉強できます。"
+       data-en="The teacher’s explanations are clear, and learning Japanese is fun."
+       data-zh="老师的讲解很清楚，学习日语很有趣。">
+      先生の説明がわかりやすく、楽しく日本語を勉強できます。
+    </p>
+  </div>
+
+  <div class="voice-card">
+    <div class="voice-header">
+      <img src="images/flags/br.png" alt="ブラジル">
+      <span data-ja="Dさん（ブラジル）" data-en="Participant D (Brazil)" data-zh="D 学员（巴西）">
+        Dさん（ブラジル）
+      </span>
+    </div>
+    <p data-ja="授業が楽しくて、クラス費も安いので通いやすいです。"
+       data-en="Classes are enjoyable and affordable, so it’s easy to attend."
+       data-zh="课程有趣，费用也很便宜，很容易参加。">
+      授業が楽しくて、クラス費も安いので通いやすいです。
+    </p>
+  </div>
+
+</div>
+
+</main>
+
+<footer>
+  <p
+    data-ja="© 1995 いろは日本語の会"
+    data-en="© 1995 Iroha Japanese Association"
+    data-zh="© 1995 伊吕波日语会">
+    © 1995 いろは日本語の会
+  </p>
+</footer>
+
+<script src="lang.js"></script>
+<script>
+fetch("header.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
+
+    attachLangEvents(); // ← 必須
+    const lang = localStorage.getItem("lang") || "ja";
+    setLang(lang);
+  });
+</script>
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
+}
+</script>
+</body>
+</html>

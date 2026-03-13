@@ -1,0 +1,164 @@
+<header>
+  <h1>いろは日本語の会</h1>
+
+ <div class="menu-icon" onclick="toggleMenu()">☰</div>
+ <nav id="menu">
+  <a href="index.html">
+    <span data-ja="ホーム" data-en="Home" data-zh="首页">ホーム</span>
+  </a>
+
+  <a href="lesson.html">
+    <span data-ja="レッスン" data-en="Lessons" data-zh="课程">レッスン</span>
+  </a>
+
+  <a href="calendar.html">
+    <span data-ja="カレンダー" data-en="Calendar" data-zh="日历">カレンダー</span>
+  </a>
+
+  <a href="photos.html">
+    <span data-ja="写真" data-en="Photos" data-zh="照片">写真</span>
+  </a>
+
+  <a href="access.html">
+    <span data-ja="アクセス" data-en="Access" data-zh="交通">アクセス</span>
+  </a>
+
+  <a href="voice.html">
+    <span data-ja="学習者さんの声" data-en="Learners' Voices" data-zh="学习者的声音">
+      学習者さんの声
+    </span>
+  </a>
+
+  <a href="volunteer.html">
+    <span data-ja="ボランティア募集" data-en="Volunteers" data-zh="志愿者招募">
+      ボランティア募集
+    </span>
+  </a>
+
+  <a href="contact.html">
+    <span data-ja="お問い合わせ" data-en="Contact" data-zh="联系我们">お問い合わせ</span>
+  </a>
+ </nav>
+ <!-- 多言語ボタン -->
+    <div class="lang-buttons">
+  <button data-lang="ja">日本語</button>
+  <button data-lang="en">English</button>
+  <button data-lang="zh">中文</button>
+ </div>
+ 
+</header>
+
+<style>
+/* ===== ヘッダー全体 ===== */
+header {
+  background-color: #f57c00;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+hheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;   /* ← nowrap を wrap に変更 */
+}
+
+header h1 {
+  white-space: nowrap; /* ← 改行させない */
+}
+
+.lang-buttons {
+  display: flex;
+  gap: 8px;
+}
+/* タイトル */
+header h1 {
+  font-size: 20px;
+  margin: 0;
+  color: white;
+}
+
+/* ナビゲーション */
+nav {
+  display: flex;
+  gap: 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* 多言語ボタン */
+.lang-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.lang-buttons button {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.lang-buttons button:hover {
+  background: white;
+  color: #f57c00;
+}
+/* ===== ハンバーガーボタン ===== */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+/* ===== PCではハンバーガーを消す ===== */
+@media (min-width: 769px) {
+  .menu-icon {
+    display: none;
+  }
+}
+/* ===== スマホ対応 ===== */
+@media (max-width: 768px) {
+
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: #f57c00;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+/* ===== スマホメニューを最前面にする ===== */
+@media (max-width: 768px) {
+
+  nav {
+    position: fixed;   /* ← absolute を fixed にする */
+    top: 60px;
+    right: 0;
+    z-index: 9999;     /* ← これを追加 */
+  }
+
+}
+</style>
+
